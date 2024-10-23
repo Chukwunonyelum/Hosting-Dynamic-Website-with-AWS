@@ -184,5 +184,4 @@ The 3-tier architecture is broken down into three core layers:
 
 This solution addresses key business challenges like scalability, high availability, and secure data management by deploying a 3-tier architecture on AWS. The web app is deployed using EC2 instances, an RDS database, and an Application Load Balancer with Auto Scaling. This architecture optimizes performance and cost while ensuring reliability.
 
-Feel free to contribute to this repository or open issues if you have any questions or suggestions.
 
