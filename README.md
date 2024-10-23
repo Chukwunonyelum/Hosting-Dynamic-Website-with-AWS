@@ -1,4 +1,3 @@
-
 # AWS 3-Tier Web Application Deployment
 
 This repository provides a comprehensive guide for deploying a dynamic web application on AWS using a 3-tier architecture. The solution leverages AWS services such as EC2, S3, RDS, and an Application Load Balancer to address the challenge of scalability, high availability, and secure data management for dynamic web applications.
@@ -40,7 +39,7 @@ The 3-tier architecture is broken down into three core layers:
 - [5. Application Load Balancer](#5-application-load-balancer)
 - [6. Website Installation](#6-website-installation)
 - [7. DNS and SSL Setup](#7-dns-and-ssl-setup)
-- [8. Auto Scaling Group](#8-auto-scaling-group)
+- [8. Auto Scaling Group and SNS Setup](#8-auto-scaling-group-and-sns-setup)
 - [Business Problem and Solution](#business-problem)
 
 ---
@@ -164,7 +163,7 @@ The 3-tier architecture is broken down into three core layers:
 
 ---
 
-## 8. Auto Scaling Group
+## 8. Auto Scaling Group and SNS Setup
 
 ### 8.1. Create AMI
 - Once the EC2 instance is configured, create an **Amazon Machine Image (AMI)** for future use.
@@ -176,12 +175,20 @@ The 3-tier architecture is broken down into three core layers:
 - Create a **Launch Template** using the AMI.
 
 ### 8.4. Create Auto Scaling Group
-- Set up an **Auto Scaling Group** to manage the number of EC2 instances behind the Application Load Balancer.
+- Set up an **Auto Scaling Group** to automatically scale the EC2 instances based on traffic.
+
+### 8.5. Set Up SNS Topic for Auto Scaling Notifications
+1. Navigate to the **Simple Notification Service (SNS)** in the AWS Console.
+2. Create a new **SNS Topic** for receiving notifications about scaling events.
+3. Set up an email subscription to the topic to receive alerts.
+4. In the **Auto Scaling Group**, configure the SNS topic for:
+   - **Launch notifications**: When a new EC2 instance is launched.
+   - **Termination notifications**: When an EC2 instance is terminated.
+
+This will allow you to monitor Auto Scaling events in real-time and take proactive measures if needed.
 
 ---
 
 ## Conclusion
 
-This solution addresses key business challenges like scalability, high availability, and secure data management by deploying a 3-tier architecture on AWS. The web app is deployed using EC2 instances, an RDS database, and an Application Load Balancer with Auto Scaling. This architecture optimizes performance and cost while ensuring reliability.
-
-
+This solution addresses key business challenges like scalability, high availability, and secure data management by deploying a 3-tier architecture on AWS. The web app is deployed using EC2 instances, an RDS database, and an Application Load Balancer with Auto Scaling and SNS notifications for monitoring. This architecture optimizes performance and cost while ensuring reliability.
